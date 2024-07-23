@@ -1,0 +1,13 @@
+numpy
+pandas
+torch
+torchvision
+torchaudio
+scipy
+scikit-learn
+opencv-python
+pretrainedmodels
+efficientnet_pytorch
+segmentation-models-pytorch==0.3.3
+timm==0.9.7
+albumentations

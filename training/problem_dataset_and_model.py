@@ -177,6 +177,8 @@ class SegmDataset(Dataset):
         for f in cache_files:
             if 'real_type_3_' in os.path.basename(f):
                 continue
+            if 'other_type_1_' in os.path.basename(f):
+                continue
             if 'real_type_4_' in os.path.basename(f):
                 id = os.path.basename(f).split('-')[-2]
                 if id not in needed_ids:

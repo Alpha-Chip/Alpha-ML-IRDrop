@@ -247,6 +247,7 @@ def train_single_model(fold_number, start_weights):
         print('Use special MSE loss beta = 2')
         loss = MSELossUpdated(beta=2)
     else:
+        print('Use standard MSE loss')
         loss = smp.utils.losses.MSELoss()
 
     optimizer = torch.optim.Adam([
@@ -335,7 +336,7 @@ if __name__ == '__main__':
 
     # if you trained models before you can start from previous weights
     start_weights = [
-        None,
+        MODELS_PATH_TORCH + 'model_tu-maxvit_large_tf_512_Unet_drop_0.0_size_512_fold_0_last_model.pth',
         None,
         None,
         None,

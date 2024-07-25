@@ -38,7 +38,12 @@ Cache file are stored in `../cache/all_files/` folder.
 
 5. After training finished you can create fuzed model, which consists of 5 independent models.
 `python training/step4_fuze_model.py`
-   
+
+* **Note 1**: You can control settings of training with `training/settings.py` file.
+* **Note 2**: We trained models in several iterations. On first iteration use: `USE_UPDATED_MSE_LOSS = False` and `LEARNING_RATE = 0.0001`. 
+After you achieve low MAE you can finetune from last point using  `USE_UPDATED_MSE_LOSS = True` and `LEARNING_RATE = 0.00001`.
+* **Note 3**: Batch size is adjusted for A6000 48GB GPU.
+
 ## Utils
 
 * `utils/convert.py` - convert .sp file in our format of training data. Useful if you need to add more data to training.

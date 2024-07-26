@@ -16,14 +16,14 @@ python inference.py current_map.csv pdn_density.csv eff_dist_map.csv netlist.sp 
 python inference.py ./example/current_map.csv ./example/pdn_density.csv ./example/eff_dist_map.csv ./example/netlist.sp ./fuzed_model.pkl irdrop_result.csv
 ```
 
-* Note 1: you can find `fuzed_model.pkl` [here]().
+* Note 1: you can find `fuzed_model.pkl` [part1](https://github.com/Alpha-Chip/Alpha-ML-IRDrop/releases/download/v1.0/fuzed_model.zip.001), [part2](https://github.com/Alpha-Chip/Alpha-ML-IRDrop/releases/download/v1.0/fuzed_model.zip.002).
 * Note 2: formats for input data can be found in [this document](https://drive.google.com/file/d/162C8PI1umxad3uYrO6aBYgCmjeTQbvR4/view) and in [this folder](./example/).
 * Note 3: We don't really use `current_map.csv`, `pdn_density.csv` and `eff_dist_map.csv`. We only take shape of matrix from this. We work with `netlist.sp` directly. 
 * Note 4: You can find hidden contest testcases [here](https://drive.google.com/file/d/18moK-FYYGU-LIiu_92eoW4gYRKrqijXW/view).
 
 ## Training
 
-1. First download [training data]() (size: ~215 GB) and put it in folder `../input`. Note: this data can be generated. See below.
+1. First download [training data](https://nn-box.com/data/Alpha-ML-IRDrop-Training-Data.7z) (size: ~51 GB (215 GB after decompression)) and put it in folder `../input`. Note: this data can be generated. See below.
 
 2. Next you need to generate train/val split for 5 KFold training. 
 `python training/step1_create_kfold_split.py`
@@ -31,7 +31,7 @@ or you can use [our kfold_split_5_seed_42.csv file](example/kfold_split_5_seed_4
 
 3. After you need to create cache for training for fast reading. Cache will require around ~61 GB. 
 `python training/step2_create_training_cache.py`
-Cache file are stored in `../cache/all_files/` folder.
+Cache files are stored in `../cache/all_files/` folder.
 
 4. Now you can run training with
 `python training/step3_train_segmentation_net.py`. Results will be stored in `../models/` directory.

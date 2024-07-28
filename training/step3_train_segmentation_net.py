@@ -293,7 +293,7 @@ def train_single_model(fold_number, start_weights):
         if no_improvements > PATIENCE:
             print('Epochs without improvememnts: {}. Break training...'.format(no_improvements))
             break
-        print('\nEpoch: {}/{}'.format(ep, EPOCHS))
+        print('\nEpoch: {}/{} Learning rate: {}'.format(ep, EPOCHS, optimizer.param_groups[0]['lr']))
         train_logs = train_epoch.run(train_loader)
         valid_time = time.time()
         score_mae, score_mse, score_f1 = valid(model, valid_data, ep)

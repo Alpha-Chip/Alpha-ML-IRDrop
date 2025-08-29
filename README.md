@@ -42,7 +42,15 @@ Cache files are stored in `../cache/all_files/` folder.
 * **Note 1**: You can control settings of training with `training/settings.py` file.
 * **Note 2**: We trained models in several iterations. On first iteration use: `USE_UPDATED_MSE_LOSS = False` and `LEARNING_RATE = 0.0001`. 
 After you achieve low MAE you can finetune from last point using  `USE_UPDATED_MSE_LOSS = True` and `LEARNING_RATE = 0.00001`.
-* **Note 3**: Batch size is adjusted for A6000 48GB GPU.
+
+## Hardware requirements
+
+We tested our code on the following configuration:
+* **OS**: Windows (the code is expected to work on Linux as well)
+* **GPU**: NVIDIA A6000 48GB
+* **VRAM**: 256 GB RAM
+* **Storage**: 1 TB SSD
+* **Note**: All batch sizes in code adjusted for 48 GB of GPU memory
 
 ## Utils
 

@@ -50,7 +50,7 @@ We tested our code on the following configuration:
 * **GPU**: NVIDIA A6000 48GB
 * **VRAM**: 256 GB RAM
 * **Storage**: 1 TB SSD
-* **Note**: All batch sizes in code adjusted for 48 GB of GPU memory
+* **Note**: All batch sizes in the code are configured for a GPU with 48 GB of memory.
 
 ## Utils
 

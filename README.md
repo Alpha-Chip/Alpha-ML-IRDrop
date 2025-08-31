@@ -1,6 +1,6 @@
 # Alpha ML IRDrop
 
-The repository contains solution for ICCAD23 contest, which took 3rd place. Solution is based on segmentation neural net Unet with MaxVitt backbone.
+The repository contains solution for ICCAD 2023 contest (Problem C: Static IR Drop Estimation Using Machine Learning). The goal of contest was to fast predict IRDrop map based on machine learning methods. Solution from this repository took 3rd place. Is based on segmentation neural network Unet with MaxVit backbone and custom loss function.
 
 ## Inference
 

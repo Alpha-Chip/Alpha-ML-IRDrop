@@ -92,20 +92,20 @@ def get_masks_tta8(data, model):
 
 
 def compute_intersection_area(x, y, i, j):
-    # Координаты левого верхнего угла квадрата (i, j)
+    # Coordinates of the top-left corner of the square (i, j)
     x1, y1 = i - 0.5, j - 0.5
-    # Координаты правого нижнего угла квадрата (i+1, j+1)
+    # Coordinates of the bottom-right corner of the square (i+1, j+1)
     x2, y2 = i + 0.5, j + 0.5
 
-    # Вычисление координаты левого верхнего угла пересечения
+    # Calculate the coordinate of the top-left corner of the intersection
     x_left = max(x - 0.5, x1)
     y_top = min(y + 0.5, y2)
 
-    # Вычисление координаты правого нижнего угла пересечения
+    # Calculate the coordinate of the bottom-right corner of the intersection
     x_right = min(x + 0.5, x2)
     y_bottom = max(y - 0.5, y1)
 
-    # Вычисление площади пересечения
+    # Calculate the intersection area
     intersection_area = max(0, x_right - x_left) * max(0, y_top - y_bottom)
 
     return intersection_area
@@ -121,28 +121,28 @@ def expand_matrix(matrix, n1, m1):
     result_matrix[:nrows, :ncols] = matrix[:nrows, :ncols]
 
     if m1 > m:
-        # Расширение матрицы вправо
+        # Expand the matrix to the right
         result_matrix[:nrows, m:] = np.repeat(matrix[:nrows, -1][:, np.newaxis], m1 - m, axis=1)
 
     if n1 > n:
-        # Расширение матрицы вниз
+        # Expand the matrix downwards
         result_matrix[n:, :] = np.repeat(result_matrix[nrows - 1, :][np.newaxis, :], n1 - nrows, axis=0)
 
     return result_matrix
 
 
 def shift(x, y):
-    # Создание нового графика
+    # Create a new plot
     x -= 0.5
     y -= 0.5
 
-    # Вычисление и вывод площади пересечения с каждым из 9 квадратов
+    # Calculate and output the intersection area with each of the 9 squares
     matrix = np.zeros((3, 3))
     for i in range(-1, 2):
         for j in range(-1, 2):
             intersection_area = compute_intersection_area(x, y, i, j)
             matrix[i + 1][j + 1] = intersection_area
-    # Показать график
+    # Show the plot
     return matrix
 
 
@@ -155,7 +155,7 @@ def find_core(sp):
 
 
 def read_sp(filename):
-    # вычисляем координаты всех инстансов
+    # calculate the coordinates of all instances
     sp = {
         "I": {
             "x": [],
@@ -210,11 +210,11 @@ def read_sp(filename):
 
 
 def netlist2currmap(sp, force_dim=None, step_x=2000, step_y=2000, mv=(0, 0)):
-    # Создание пустой матрицы
+    # Create an empty matrix
     x_coord = sp["I"]["x"]
     y_coord = sp["I"]["y"]
     values = sp["I"]["v"]
-    # Вычисляем размер ядра
+    # Calculate the core size
     _, max_x, _, max_y = find_core(sp)
     x_width = int(max_x / step_x) + 1
     y_width = int(max_y / step_y) + 1
@@ -223,19 +223,19 @@ def netlist2currmap(sp, force_dim=None, step_x=2000, step_y=2000, mv=(0, 0)):
         posx = (x_coord[i] // step_x)
         posy = (y_coord[i] // step_y)
 
-        # Вычисление коэффициентов для распределения значения
+        # Calculate coefficients for value distribution
         dx = x_coord[i] / step_x - posx
         dy = y_coord[i] / step_y - posy
         sh = shift(dx, dy)
 
-        # Определение, лежит ли точка на границе
+        # Determine if the point lies on the boundary
         is_bndry = 0
         if posx in [0, x_width - 1]:
             is_bndry = 1
         if posy in [0, y_width - 1]:
             is_bndry = 1
 
-        # Распределение значения между ячейками
+        # Distribute the value among the cells
         if is_bndry:
             matrix[posx, posy] += values[i]
         else:
@@ -249,11 +249,11 @@ def netlist2currmap(sp, force_dim=None, step_x=2000, step_y=2000, mv=(0, 0)):
 
 
 def netlist2voltge(sp, force_dim=None, step_x=2000, step_y=2000, mv=(0, 0)):
-    # Создание пустой матрицы
+    # Create an empty matrix
     x_coord = sp["V"]["x"]
     y_coord = sp["V"]["y"]
     values = sp["V"]["v"]
-    # Вычисляем размер ядра
+    # Calculate the core size
     _, max_x, _, max_y = find_core(sp)
     x_width = int(max_x / step_x) + 1
     y_width = int(max_y / step_y) + 1
@@ -278,13 +278,13 @@ def netlist2voltge(sp, force_dim=None, step_x=2000, step_y=2000, mv=(0, 0)):
 
 
 def netlist2density(sp, force_dim=None, step_x=2000, step_y=2000, mv=(0, 0)):
-    # Создание пустой матрицы
+    # Create an empty matrix
     x1 = sp["R"]["x1"]
     y1 = sp["R"]["y1"]
     x2 = sp["R"]["x2"]
     y2 = sp["R"]["y2"]
     values = sp["R"]["v"]
-    # Вычисляем размер ядра
+    # Calculate the core size
     _, max_x, _, max_y = find_core(sp)
     x_width = int(max_x / step_x) + 1
     y_width = int(max_y / step_y) + 1

@@ -71,4 +71,4 @@ Comparison of predictions on hidden testcase7 with ground truth:
 You can find paper with details here: TBD
 
 ## Requirements
-Listed ![here](https://github.com/Alpha-Chip/Alpha-ML-IRDrop/blob/main/requirements.txt)
+Listed here: [requirements.txt](https://github.com/Alpha-Chip/Alpha-ML-IRDrop/blob/main/requirements.txt)

@@ -57,9 +57,14 @@ We tested our code on the following configuration:
 * `utils/convert.py` - convert .sp file in our format of training data. Useful if you need to add more data to training.
 * `utils/draw_irdrop_map.py` - draw IRDrop map and store in png file.
 
-## Dataset generators
+## Materials and methods
+### Dataset generators
 
 You can find information here: [DATASET.md](data_preproc/DATASET.md)
+
+### Evaluation metrics
+
+You can find information here: [metrics.md](data_preproc/metrics.md)
 
 ## Results
 

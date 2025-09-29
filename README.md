@@ -1,4 +1,4 @@
-# Alpha ML IRDrop
+# Alpha-ML-IRDrop
 
 The repository contains solution for ICCAD 2023 contest (Problem C: Static IR Drop Estimation Using Machine Learning). The goal of contest was to fast predict IRDrop map based on machine learning methods. Solution from this repository took 3rd place. Is based on segmentation neural network Unet with MaxVit backbone and custom loss function.
 
@@ -74,3 +74,6 @@ Comparison of predictions on hidden testcase7 with ground truth:
 ## Paper and citation
 
 You can find paper with details here: TBD
+
+## Requirements
+Listed here: [requirements.txt](https://github.com/Alpha-Chip/Alpha-ML-IRDrop/blob/main/requirements.txt)
